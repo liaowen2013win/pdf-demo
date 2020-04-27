@@ -1,14 +1,11 @@
 package com.xpu.example.itext.demo.testPDF;
 
-import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.tool.xml.XMLWorkerHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 public class ITextHtmlToPdf {
@@ -28,6 +25,7 @@ public class ITextHtmlToPdf {
                     + title + "</span></p>" + text + "</body></html>";
             byte[] b = content.getBytes(StandardCharsets.UTF_8);  //这里是必须要设置编码的，不然导出中文就会乱码。
             ByteArrayInputStream bais = new ByteArrayInputStream(b);//将字节数组包装到流中
+            // 下面这行会报错，此方法不要用了
 //            XMLWorkerHelper.getInstance().parseXHtml(writer, document, bais, Charset.forName("UTF-8"), new PdfFont());
             bais.close();
             document.close();
